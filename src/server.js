@@ -27,58 +27,58 @@ mongoose.connect(mongoUri)
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Define the schema for the contact form data
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  phone: {
-    type: String, 
-    required: false,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  message: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+// const userSchema = new mongoose.Schema({
+//   name: {
+//     type: String,
+//     required: true,
+//   },
+//   phone: {
+//     type: String, 
+//     required: false,
+//   },
+//   email: {
+//     type: String,
+//     required: true,
+//   },
+//   message: {
+//     type: String,
+//     required: true,
+//   },
+//   createdAt: {
+//     type: Date,
+//     default: Date.now,
+//   },
+// });
 
-const User = mongoose.model('User', userSchema);
+// const User = mongoose.model('User', userSchema);
 
-// API route to handle contact form submissions
-app.post('/api/contact', async (req, res) => {
-  try {
-    const { name, phone, email, message } = req.body;
+// // API route to handle contact form submissions
+// app.post('/api/contact', async (req, res) => {
+//   try {
+//     const { name, phone, email, message } = req.body;
 
-    // Validate the incoming data
-    if (!name || !email || !message) {
-      return res.status(400).json({ error: 'Name, email, and message are required.' });
-    }
+//     // Validate the incoming data
+//     if (!name || !email || !message) {
+//       return res.status(400).json({ error: 'Name, email, and message are required.' });
+//     }
 
-    // Create a new user document
-    const newUser = new User({
-      name,
-      phone,
-      email,
-      message,
-    });
+//     // Create a new user document
+//     const newUser = new User({
+//       name,
+//       phone,
+//       email,
+//       message,
+//     });
 
-    // Save the user to the database
-    await newUser.save();
+//     // Save the user to the database
+//     await newUser.save();
 
-    res.status(201).json({ message: 'Message saved successfully!', data: newUser });
-  } catch (error) {
-    console.error('Error saving message:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+//     res.status(201).json({ message: 'Message saved successfully!', data: newUser });
+//   } catch (error) {
+//     console.error('Error saving message:', error);
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// });
 
 
 
